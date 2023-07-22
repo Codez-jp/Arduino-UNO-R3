@@ -2,12 +2,6 @@
 #define F_CPU 16000000UL  // 16MHz
 #include "util/delay.h"  // _delay_ms()
 
-/* ====================================== */
-/* DIGITAL Input/Output control registers */
-/* ====================================== */
-#define MY_PORTB (*(volatile unsigned char *)(0x25))
-#define MY_DDRB (*(volatile unsigned char *)(0x24))
-
 #define BIT7 7  // just bit 7
 #define BIT6 6  // just bit 6
 #define BIT5 5  // just bit 5
@@ -16,6 +10,12 @@
 #define BIT2 2  // just bit 2
 #define BIT1 1  // just bit 1
 #define BIT0 0  // just bit 0
+
+/* ====================================== */
+/* DIGITAL Input/Output control registers */
+/* ====================================== */
+#define MY_PORTB (*(volatile unsigned char *)(0x25))
+#define MY_DDRB (*(volatile unsigned char *)(0x24))
 
 #define PB5 BIT5
 #define PB4 BIT4
