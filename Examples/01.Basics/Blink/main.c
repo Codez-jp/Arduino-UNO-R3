@@ -2,9 +2,9 @@
 #define F_CPU 16000000UL  // 16MHz
 #include "util/delay.h"  // _delay_ms()
 
-#define MY_DDRB (*(volatile unsigned char *)(0x24))
-#define MY_PORTB (*(volatile unsigned char *)(0x25))
-#define D13 5  // Port-B bit 6
+#define MY_DDRB     (*(volatile unsigned char *)(0x24))
+#define MY_PORTB    (*(volatile unsigned char *)(0x25))
+#define D13     5  // Port-B bit 6
 
 
 void setup() {
@@ -16,7 +16,7 @@ void setup() {
 int main() {
     setup();
 
-    while( 1 ){
+    while( 1 ) {
         MY_PORTB |= (1 << D13);  // set bit is HIGH
         _delay_ms(1000);
 

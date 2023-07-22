@@ -14,8 +14,8 @@
 /* ====================================== */
 /* DIGITAL Input/Output control registers */
 /* ====================================== */
-#define MY_PORTB (*(volatile unsigned char *)(0x25))
-#define MY_DDRB (*(volatile unsigned char *)(0x24))
+#define MY_PORTB    (*(volatile unsigned char *)(0x25))
+#define MY_DDRB     (*(volatile unsigned char *)(0x24))
 
 #define PB5 BIT5
 #define PB4 BIT4
@@ -57,7 +57,7 @@ void setup() {
 int main() {
     setup();
 
-    while( 1 ){
+    while( 1 ) {
         MY_PORTB |= (1 << D13);  // set bit is HIGH
         _delay_ms(1000);
 

@@ -2,20 +2,19 @@
 #define F_CPU 16000000UL
 #include "util/delay.h"  // _delay_ms()
 
-#define MY_DDRB (*(volatile unsigned char *)(0x24))
-#define MY_PORTB (*(volatile unsigned char *)(0x25))
+#define MY_DDRB     (*(volatile unsigned char *)(0x24))
+#define MY_PORTB    (*(volatile unsigned char *)(0x25))
 
-#define MY_ADCW (*(volatile unsigned short *)(0x78))
-#define MY_ADCSRA (*(volatile unsigned char *)(0x7a))
-#define MY_ADMUX (*(volatile unsigned char *)(0x7c))
+#define MY_ADCW     (*(volatile unsigned short *)(0x78))
+#define MY_ADCSRA   (*(volatile unsigned char *)(0x7a))
+#define MY_ADMUX    (*(volatile unsigned char *)(0x7c))
 
 
-#define D13 5  // Port-B bit6
+#define D13     5  // Port-B bit6
 #define MY_ADSC 6
 
 
-void init_adc(void)
-{
+void init_adc( void ) {
     // MUX<3:0>(4)
     // ADLAR<5>
     // REFS<7:6>(2) <- AVCC as reference voltage
@@ -30,30 +29,24 @@ void init_adc(void)
 }
 
 
-uint16_t read_adc(void)
-{
+uint16_t read_adc( void ) {
     MY_ADCSRA |= (1 << MY_ADSC); // Start conversion
-    while (MY_ADCSRA & (1 << MY_ADSC)); // Wait for conversion to complete
+    while ( MY_ADCSRA & (1 << MY_ADSC) ); // Wait for conversion to complete
     return MY_ADCW; // Return result
 }
 
 
-int main(void)
-{
+int main( void ) {
     init_adc();
     MY_DDRB |= (1 << D13); // Set PB5 as output
 
-    while (1)
-    {
+    while( 1 ) {
         uint16_t adc_value = read_adc();
-        if (adc_value > 512)
-        {
+        if( adc_value > 512 ) {
             MY_PORTB |= (1 << D13); // Turn on LED
-        }
-        else
-        {
+        } else {
             MY_PORTB &= ~(1 << D13); // Turn off LED
         }
-        _delay_ms(100);
+        _delay_ms( 100 );
     }
 }

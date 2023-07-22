@@ -14,8 +14,8 @@
 /* ====================================== */
 /* DIGITAL Input/Output control registers */
 /* ====================================== */
-#define MY_PORTB (*(volatile unsigned char *)(0x25))
-#define MY_DDRB (*(volatile unsigned char *)(0x24))
+#define MY_PORTB    (*(volatile unsigned char *)(0x25))
+#define MY_DDRB     (*(volatile unsigned char *)(0x24))
 
 #define PB5 BIT5
 #define PB4 BIT4
@@ -47,18 +47,18 @@
 *             |   +-+--> BUZZER
 *             +-+--> LED
 */
-#define OUTPUT 1
-#define INPUT 0
-#define HIGH 1
-#define LOW 0
+#define OUTPUT  1
+#define INPUT   0
+#define HIGH    1
+#define LOW     0
 
-#define LED_BUILTIN D13  // on the board
-#define LED D13  // on the breadboard
-#define BUZZER D12  // on the breadboard
+#define LED_BUILTIN     D13  // on the board
+#define LED             D13  // on the breadboard
+#define BUZZER          D12  // on the breadboard
 
 
-void pinMode( unsigned char pin, unsigned char mode ){
-    if( mode == 0 ){
+void pinMode( unsigned char pin, unsigned char mode ) {
+    if( mode == 0 ) {
         MY_DDRB &= ~(1 << pin);  // as Input
     }
     else{
@@ -67,8 +67,8 @@ void pinMode( unsigned char pin, unsigned char mode ){
 }
 
 
-void digitalWrite( unsigned char pin, unsigned char value ){
-    if( value == 0 ){
+void digitalWrite( unsigned char pin, unsigned char value ) {
+    if( value == 0 ) {
         MY_PORTB &= ~(1 << pin);  // clear bit is LOW
     }
     else{
@@ -77,8 +77,8 @@ void digitalWrite( unsigned char pin, unsigned char value ){
 }
 
 
-void delay( unsigned long ms ){
-    while( ms-- ){
+void delay( unsigned long ms ) {
+    while( ms-- ) {
         _delay_ms(1);
     }
 }
@@ -133,7 +133,7 @@ void loop() {
 
 int main() {
     setup();
-    while( 1 ){
+    while( 1 ) {
         loop();     
     }
     return 0;

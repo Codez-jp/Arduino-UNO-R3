@@ -14,12 +14,12 @@
 /* ====================================== */
 /* DIGITAL Input/Output control registers */
 /* ====================================== */
-#define MY_PORTB (*(volatile unsigned char *)(0x25))
-#define MY_DDRB (*(volatile unsigned char *)(0x24))
+#define MY_PORTB    (*(volatile unsigned char *)(0x25))
+#define MY_DDRB     (*(volatile unsigned char *)(0x24))
 
-#define MY_PORTD (*(volatile unsigned char *)(0x2b))
-#define MY_DDRD (*(volatile unsigned char *)(0x2a))
-#define MY_PIND (*(volatile unsigned char *)(0x29))
+#define MY_PORTD    (*(volatile unsigned char *)(0x2b))
+#define MY_DDRD     (*(volatile unsigned char *)(0x2a))
+#define MY_PIND     (*(volatile unsigned char *)(0x29))
 
 /*
 * PORTB(The port B Data Register)
@@ -48,8 +48,8 @@
 #define D12 PB4  // Port-B bit 4
 #define D11 PB3  // Port-B bit 3
 #define D10 PB2  // Port-B bit 2
-#define D9 PB1  // Port-B bit 1
-#define D8 PB0  // Port-B bit 0
+#define D9  PB1  // Port-B bit 1
+#define D8  PB0  // Port-B bit 0
 
 /*
 * PORTD(The port D Data Register)
@@ -89,7 +89,7 @@
 #define D2 PD2  // Port-D bit 2
 
 
-void setup( void ){
+void setup( void ) {
     // Blink
     //   https://www.arduino.cc/en/Tutorial/BuiltInExamples/Blink
     MY_DDRB |= (1 << D13);  // Digital OUT
@@ -103,17 +103,17 @@ void setup( void ){
 }
 
 
-int is_bit_set( unsigned char byte, unsigned char bit ){
+int is_bit_set( unsigned char byte, unsigned char bit ) {
     return (byte & (1 << bit)) != 0;
 }
 
 
-int main( void ){
+int main( void ) {
     setup( );
 
-    while( 1 ){  // loop
+    while( 1 ) {  // loop
         _delay_ms(50);
-        if( is_bit_set(MY_PIND, D2) ){
+        if( is_bit_set( MY_PIND, D2 ) ) {
             MY_PORTB &= ~(1 << D13);  // clear as LOW
         }
         else{
