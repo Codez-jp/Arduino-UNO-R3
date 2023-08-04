@@ -47,19 +47,19 @@ void setup( void ) {
     */
     /*
     * ADMUX – ADC Multiplexer Selection Register
-    * MUX<3:0>(4)
-    * ADLAR<5>
-    * REFS<7:6>(2)
+    * MUX<3:0>(4) <- ADC0 as input channel
+    * ADLAR<5> <- Right adjust result
+    * REFS<7:6>(2) <- AVCC as reference voltage
     */
     MY_ADMUX = 0b01000000;  // AVCC as reference voltage, ADC0 as input channel
     /*
     * ADCSRA – ADC Control and Status Register A
-    * ADPS<2:0>(3)
-    * ADIE<3>
-    * ADIF<4>
-    * ADATE<5>
-    * ADSC<6>
-    * ADEN<7>
+    * ADPS<2:0>(3) <- ADC, prescaler
+    * ADIE<3> <- Interrupt enable
+    * ADIF<4> <- Interrupt flag
+    * ADATE<5> <- Auto trigger enable
+    * ADSC<6> <- Start conversion
+    * ADEN<7> <- Enable ADC
     */
     MY_ADCSRA = 0b10000111;  // Enable ADC, prescaler = 128
 
