@@ -23,19 +23,17 @@
 
 /*
 * PORTB(The port B Data Register)
-* BIT 7   6   5   4   3   2   1   0
-* R/W -   -   0   0   0   0   0   0   | 0/1 = LOW/HIGH
-*             |   |   |   |   |   |
-* PIN -   -   D13 D12 D11 D10 D9  D8
-*             |   |   |   |   |   |
+* BIT   7   6   5   4   3   2   1   0
+* R/W   -   -   0   0   0   0   0   0   |   0/1 = LOW/HIGH
+* PIN   -   -   D13 D12 D11 D10 D9  D8
+*               |   |   |   |   |   |
 * DDRB(The port B Data Direction Register)
-* BIT 7   6   5   4   3   2   1   0
-* R/W -   -   0   0   0   0   0   0   | 0/1 = Input/Output
-*             |   |   |   |   |   |
-* PIN -   -   D13 D12 D11 D10 D9  D8 
-*             |   |
-*             |   +-+--> BUZZER
-*             +-+--> LED
+* BIT   7   6   5   4   3   2   1   0
+* R/W   -   -   0   0   0   0   0   0   |   0/1 = Input/Output
+* PIN   -   -   D13 D12 D11 D10 D9  D8 
+*               |   |
+*               |   +-+--> BUZZER
+*               +-+--> LED
 */
 #define PB5 BIT5
 #define PB4 BIT4
