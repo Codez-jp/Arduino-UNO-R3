@@ -11,10 +11,9 @@
 #define BIT1 1  // just bit 1
 #define BIT0 0  // just bit 0
 
-/* ====================================== */
-/* DIGITAL Input/Output control registers */
-/* ====================================== */
+// PORTB – Port B Data Register
 #define MY_PORTB    (*(volatile unsigned char *)(0x25))
+// DDRB – Port B Data Direction Register
 #define MY_DDRB     (*(volatile unsigned char *)(0x24))
 
 #define PB5 BIT5
