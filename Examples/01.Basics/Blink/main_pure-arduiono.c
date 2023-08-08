@@ -9,6 +9,15 @@
 #define LOW             0
 #define HIGH            1
 
+#define BIT0    0
+#define BIT1    1
+#define BIT2    2
+#define BIT3    3
+#define BIT4    4
+#define BIT5    5
+#define BIT6    6
+#define BIT7    7
+
 
 // PORTD – Port D Data Register
 #define MY_PORTD    (*(volatile unsigned char *)(0x2B))
@@ -30,6 +39,15 @@
 #define MY_DDRC     (*(volatile unsigned char *)(0x27))
 // PINC – Port C Input Pins Address
 #define MY_PINC     (*(volatile unsigned char *)(0x26))
+
+// ADCSRA – ADC Control and Status Register A
+#define MY_ADCSRA   (*(volatile unsigned char *)(0x7A))
+// ADCSRB – ADC Control and Status Register B
+#define MY_ADCSRB   (*(volatile unsigned char *)(0x7B))
+// ADMUX – ADC Multiplexer Selection Register
+#define MY_ADMUX    (*(volatile unsigned char *)(0x7C))
+// ADCW – ADC Data Register CAUTION : ADCW is not an official word size definition
+#define MY_ADCW     (*(volatile unsigned short *)(0x78))
 
 
 // port D
@@ -95,7 +113,25 @@
 *              |   |   |   |   |   |
 *              NC  NC  NC  NC  NC  NC <-- only digital I/O
 *
+* ADCSRA(The ADC Control and Status Register A)
+*   ADPS<2:0>(3) <- ADC, prescaler
+*   ADIE<3> <- Interrupt enable
+*   ADIF<4> <- Interrupt flag
+*   ADATE<5> <- Auto trigger enable
+*   ADSC<6> <- Start conversion
+*   ADEN<7> <- Enable ADC
+*
+* ADCSRB(The ADC Control and Status Register B)
+*   ADTS<2:0>(3) <- Auto trigger source
+*
+* ADMUX(The ADC Multiplexer Selection Register)
+*   MUX<3:0>(4) <- ADC0 as input channel
+*   ADLAR<5> <- Right adjust result
+*   REFS<7:6>(2) <- AVCC as reference voltage
+*
 */
+
+
 const unsigned char uno_r3_pin_num2str(unsigned char num) {
     static const unsigned char table[] = {
         0, 1, 2, 3, 4, 5, 6, 7,  // D0 - D7
@@ -104,9 +140,8 @@ const unsigned char uno_r3_pin_num2str(unsigned char num) {
     };
     if (num >= 0 && num <= 19) {
         return table[num];
-    } else {
-        return num;
     }
+    return 0;
 }
 
 
@@ -201,6 +236,28 @@ unsigned char digitalRead( unsigned char pin ) {
 }
 
 
+int analogRead( unsigned char pin ) {
+    if( pin>=14 && pin<=19 ) {
+        pin = uno_r3_pin_num2str(pin);
+        MY_ADMUX = (MY_ADMUX & 0b11110000) | pin;  // pin as input channel
+        MY_ADMUX &= ~(1 << BIT5);  // 0: Right adjust result
+        MY_ADMUX |= (1 << BIT6);  // 1: AVCC as reference voltage
+        MY_ADMUX &= ~(1 << BIT7);  // 0: AVCC as reference voltage
+//        MY_ADMUX = 0b01000000;  // AVCC as reference voltage, ADC0 as input channel
+        MY_ADCSRA |= (1 << BIT7);  // 1: Enable ADC
+        MY_ADCSRA |= (1 << BIT2);  // 1: prescaler = 128
+        MY_ADCSRA |= (1 << BIT1);  // 1: prescaler = 128
+        MY_ADCSRA |= (1 << BIT0);  // 1: prescaler = 128
+//        MY_ADCSRA = 0b10000111;  // Enable ADC, prescaler = 128
+
+        MY_ADCSRA |= (1 << BIT6);  // Start conversion
+        while (MY_ADCSRA & (1 << BIT6));  // Wait for conversion to complete
+        return MY_ADCW;  // Return result
+    }
+    return 0;
+}
+
+
 void delay( unsigned long ms ) {
     while( ms-- ) {
         _delay_ms(1);
@@ -209,10 +266,11 @@ void delay( unsigned long ms ) {
 
 
 // Digital I/O pin assign
-#define LED_BUILTIN     13  // on the board
-#define LED             13  // on the breadboard
-#define BUZZER          12  // on the breadboard
-#define BUTTON          2   // on the breadboard
+#define LED_BUILTIN     D13  // on the board
+#define LED             D13  // on the breadboard
+#define BUZZER          D12  // on the breadboard
+#define BUTTON          D2  // on the breadboard
+#define VR              A0  // on the breadboard
 
 
 // #############################################################################
