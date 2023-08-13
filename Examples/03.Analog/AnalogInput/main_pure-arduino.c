@@ -88,8 +88,8 @@
 *      |   |   |   |   |   |   |   |
 * SILK D7  D6  D5  D4  D3  D2  D1TXD0RX
 * PIN  7   6   5   4   3   2   1   0
-*                                  |
-*                                  +-+--> BUTTON
+*                          |
+*                          +-+--> BUTTON
 *
 * PORTB(The port B Data Register)
 * BIT  7   6   5   4   3   2   1   0
