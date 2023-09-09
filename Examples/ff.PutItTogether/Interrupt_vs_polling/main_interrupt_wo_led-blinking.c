@@ -646,7 +646,7 @@ void setup() {
 
 void loop() {
     // buzzer when button pressed
-    digitalWrite( BUZZER, buzzer_state );
+//    digitalWrite( BUZZER, buzzer_state );
     digitalWrite( LED, led_state ); 
 }
 
