@@ -625,23 +625,29 @@ int toggleState( unsigned char pin ) {
 //   PD2(INT0) is used as button input
 ISR( PCINT2_vect ) {
     toggleState( BUZZER );
+    toggleState( LED );
 }
 
 void setup() {
+    // disabled intrerrupt
     cli();
     MY_PCICR |= 0b00000100;        // enable pin change interrupt 2 <-- PORT-D
     MY_PCMSK2 |= 0b00000100;       // enable pin change interrupt on PCINT10 <-- PD2
-    sei();
 
     pinMode( LED, OUTPUT );
     pinMode( BUZZER, OUTPUT );
     pinMode( BUTTON, INPUT_PULLUP );
+
+    buzzer_state = HIGH;
+    led_state = HIGH;
+    // enabled intrerrupt
+    sei();
 }
 
 void loop() {
     // buzzer when button pressed
     digitalWrite( BUZZER, buzzer_state );
-    digitalWrite( LED, buzzer_state ); 
+    digitalWrite( LED, led_state ); 
 }
 
 // #############################################################################
