@@ -2,15 +2,47 @@
 // for ELEGOO UNO R3 Project Complete Starter Kit
 // based on ELEGOO original version
 
+// The circuit:
+//   - Servo signal(S) pin to Arduino D9(9) pin
+//   - Servo VCC(+5V) pin to Arduino 5V(5V) pin
+//   - Servo GND(GND) pin to Arduino GND(GND) pin
+
+// Define Arduino UNO R3 pins
+// port D
+#define D0  0
+#define D1  1
+#define D2  2
+#define D3  3
+#define D4  4
+#define D5  5
+#define D6  6
+#define D7  7
+// port B
+#define D8  8
+#define D9  9
+#define D10 10
+#define D11 11
+#define D12 12
+#define D13 13
+// port C
+#define A0  14
+#define A1  15
+#define A2  16
+#define A3  17
+#define A4  18
+#define A5  19
+
 // include the Servo library
 #include <Servo.h>
 
 // create Servo object
 Servo servo;
+
 // variable to store the servo position
 int servo_pos = 0;
+
 // Define Servo pin
-const int SERVO_PIN = 9;
+const int SERVO_PIN = D9;
 
 
 void setup() {
