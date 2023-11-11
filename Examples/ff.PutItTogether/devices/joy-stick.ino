@@ -46,7 +46,7 @@ void setup() {
     pinMode( X_PIN, INPUT );
     pinMode( Y_PIN, INPUT );
     // Set built-in LED to output
-    pinMode(LED_BUILTIN, OUTPUT);
+    pinMode( LED_BUILTIN, OUTPUT );
     // baud rate: 9600bps, data length: 8bit, parity:none, stop bit: 1bit
     Serial.begin( 9600, SERIAL_8N1 );
 }
@@ -59,20 +59,20 @@ void loop() {
     //   LOW: pressed <-- input pin is pulluped!!
     //   HIGH: released
     if (sw_val == LOW) {
-        digitalWrite(LED_BUILTIN, HIGH);
-        Serial.println("Button pressed");
+        digitalWrite( LED_BUILTIN, HIGH );
+        Serial.println( "Button pressed" );
     } else {
-        digitalWrite(LED_BUILTIN, LOW);
-        Serial.println("Button released");
+        digitalWrite( LED_BUILTIN, LOW );
+        Serial.println( "Button released" );
     }
     // Read X, Y position
-    int x_val = analogRead(X_PIN);
-    int y_val = analogRead(Y_PIN);
+    int x_val = analogRead( X_PIN );
+    int y_val = analogRead( Y_PIN );
     // Print X, Y position
-    Serial.print("X: ");
-    Serial.print(x_val);
-    Serial.print(" Y: ");
-    Serial.println(y_val);
+    Serial.print( "X: " );
+    Serial.print( x_val );
+    Serial.print( " Y: " );
+    Serial.println( y_val );
     // Wait 1000ms
-    delay(1000);
+    delay( 1000 );
 }
