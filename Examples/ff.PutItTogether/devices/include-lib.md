@@ -2,8 +2,10 @@
 ## Arduino IDE
 1. ライブラリを[ダウンロード](https://www.elegoo.com/en-jp/blogs/arduino-projects/elegoo-uno-project-super-starter-kit-tutorial)し、解凍する
 ![](./include-lib_download.png)
-1. Arduino IDEを起動
+
+1. Arduino IDEを起動  
 ![](./Arduino-IDE.png)
+
 1. メニューの「スケッチ」→「ライブラリをインクルード」→「ZIP形式のライブラリをインストール」を選択
 ![](./include-lib.png)
 1. ダイアログが開くので、ダウンロードしたライブラリのZIPファイルを選択
