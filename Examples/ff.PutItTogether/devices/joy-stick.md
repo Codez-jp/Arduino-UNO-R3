@@ -1,6 +1,6 @@
 ## circuit
 ![](./joy-stick.drawio.png)
-## photo
+## photos
 ![](./joy-stick.jpg)
 ## reference
 -
