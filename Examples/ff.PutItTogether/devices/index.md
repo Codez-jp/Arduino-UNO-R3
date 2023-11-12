@@ -4,7 +4,8 @@
 ### circuit
 ![](./joy-stick.drawio.png)
 ### photos
-![](./joy-stick.jpg)
+<img src="./joy-stick.jpg" width="480"/>
+
 ### reference
 [link to code](./joy-stick.ino)
 
@@ -12,7 +13,8 @@
 ### circuit
 ![](./ultra-sonic.drawio.png)
 ### photos
-![](./ultra-sonic.jpg)
+<img src="./ultra-sonic.jpg" width="480"/>
+
 ### reference
 [link to code](./ultra-sonic.ino)
 
@@ -20,7 +22,8 @@
 ### circuit
 ![](./servo.drawio.png)
 ### photos
-![](./servo.jpg)
+<img src="./servo.jpg" width="480"/>
+
 ### reference
 [link to code](./servo.ino)
 
@@ -29,7 +32,9 @@
 ![](./remote-controller.drawio.png)
 ## photos
 <img src="./remote-controller.jpg" width="200"/>
-![](./remote-controller_rxtx.jpg)
+<br>
+<img src="./remote-controller_rxtx.jpg" width="480"/>
+
 ## reference
 how to include library in arduino -> [link to detail](./include-lib.md)
 [link to code](./remote-controller.ino)
